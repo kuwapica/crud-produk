@@ -19,11 +19,11 @@ class ProdukFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama_produk' => $this->faker->word,
-            'kategori' => $this->faker->word,
-            'harga' => $this->faker->numberBetween(1000, 50000),
-            'stok' => $this->faker->numberBetween(1, 100),
-            'deskripsi' => $this->faker->sentence
+            'nama_produk' => fake()->word,
+            'kategori' => fake()->word,
+            'harga' => fake()->numberBetween(1000, 50000),
+            'stok' => fake()->numberBetween(1, 100),
+            'deskripsi' => fake()->sentence
         ];
     }
 }

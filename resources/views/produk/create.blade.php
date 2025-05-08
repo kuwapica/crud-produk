@@ -20,10 +20,12 @@
 <body class="bg-success-subtle">
 
     <div class="container mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card border-0 shadow-sm rounded">
-                    <div class="card-body">
+
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm rounded">
+                <div class="card-body">
+                    <a href="{{ route('produk.index') }}" class="btn btn-md btn-primary mb-3">Kembali</a>
+                    <div class="row">
                         <form action="{{ route('produk.store') }}" method="POST">
 
                             @csrf
@@ -102,7 +104,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-md btn-primary me-3">Simpan</button>
+                            <button type="submit" class="btn btn-md btn-success me-3">Simpan</button>
                             <button type="reset" class="btn btn-md btn-warning">Reset</button>
 
                         </form>

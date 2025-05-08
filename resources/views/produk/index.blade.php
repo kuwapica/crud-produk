@@ -46,7 +46,7 @@
                                             {{ $data->nama_produk }}
                                         </td>
                                         <td>{{ $data->kategori }}</td>
-                                        <td>{{ 'Rp ' . number_format($data->harga, 2, ',', '.') }}</td>
+                                        <td>{{ 'Rp' . number_format($data->harga, 2, ',', '.') }}</td>
                                         <td>{{ $data->stok }}</td>
                                         <td>{{ $data->deskripsi }}</td>
                                         <td class="text-center">

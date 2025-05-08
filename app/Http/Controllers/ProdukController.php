@@ -2,21 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-// mengambil data dari tabel produk
 use App\Models\Produk;
 use Illuminate\View\View;
-
-//import return type redirectResponse
+use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
 class ProdukController extends Controller
 {
     /**
-     * index
-     *
-     * @return void
+     * Display a listing of the resource.
      */
     public function index(): View
     {
@@ -27,21 +22,26 @@ class ProdukController extends Controller
         return view('produk.index', compact('produk')); //data produk bisa diakses di view
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create(): View
     {
         return view('produk.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request): RedirectResponse
     {
-
         //validate form
         $request->validate([
-            'nama_produk'         => 'required|min:3',
-            'kategori'         => 'required|min:3',
-            'harga'         => 'required|numeric',
+            'nama_produk'  => 'required|min:3',
+            'kategori'     => 'required|min:3',
+            'harga'        => 'required|numeric',
             'stok'         => 'required|numeric',
-            'deskripsi'   => 'required|min:5'
+            'deskripsi'    => 'required|min:5'
         ]);
 
         //create product
@@ -57,7 +57,11 @@ class ProdukController extends Controller
         return redirect()->route('produk.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-    public function show(string $id)
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id): View
     {
         $produk = Produk::findOrFail($id);
 
@@ -65,10 +69,7 @@ class ProdukController extends Controller
     }
 
     /**
-     * edit
-     *
-     * @param  mixed $id
-     * @return View
+     * Show the form for editing the specified resource.
      */
     public function edit(string $id): View
     {
@@ -77,9 +78,11 @@ class ProdukController extends Controller
         return view('produk.edit', compact('produk'));
     }
 
-    public function update(Request $request, $id): RedirectResponse
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id): RedirectResponse
     {
-
         //validate form
         $request->validate([
             'nama_produk'  => 'required|min:3',
@@ -105,7 +108,10 @@ class ProdukController extends Controller
         return redirect()->route('produk.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
-    public function destroy($id): RedirectResponse
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id): RedirectResponse
     {
         //get product by ID
         $produk = Produk::findOrFail($id);
